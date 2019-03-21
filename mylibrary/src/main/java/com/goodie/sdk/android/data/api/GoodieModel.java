@@ -31,12 +31,12 @@ public class GoodieModel {
     }
 
     //get data login request
-    public static LoginRequest setLoginRequest(String username, String password, String memberId, Context context){
+    public static LoginRequest setLoginRequest(String username, String password, String merchantId, Context context){
         final String idDevice = getDeviceId(context);
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username);
         loginRequest.setPassword(password);
-        loginRequest.setMerchantId(memberId);
+        loginRequest.setMerchantId(merchantId);
         loginRequest.setDeviceUniqueId(idDevice);
         return  loginRequest;
     }

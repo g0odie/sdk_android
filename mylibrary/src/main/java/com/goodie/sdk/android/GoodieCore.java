@@ -56,8 +56,8 @@ public class GoodieCore{
     }
 
     //login user
-    public static LoginBuilder setLoginUser(String userEmail, String password, String memberId){
-        return new LoginBuilder(userEmail, password, memberId);
+    public static LoginBuilder setLoginUser(String userEmail, String password, String merchantId){
+        return new LoginBuilder(userEmail, password, merchantId);
     }
 
     //register user
@@ -72,8 +72,8 @@ public class GoodieCore{
     }
 
     //member point
-    public static MemberPointBuilder setMemberPointBuilder(String memberId, String merchantId){
-        return new MemberPointBuilder(memberId, merchantId);
+    public static MemberPointBuilder setMemberPointBuilder(String authToken, String deviceUniqId, String memberId, String merchantId){
+        return new MemberPointBuilder(authToken, deviceUniqId, memberId, merchantId);
     }
 
     //promotion inquiry

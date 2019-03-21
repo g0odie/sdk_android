@@ -13,23 +13,28 @@ import rx.schedulers.Schedulers;
 
 public class MemberPointBuilder {
 
+    private String authToken;
+    private String deviceUniqId;
     private String memberId;
     private String merchantId;
 
-    public MemberPointBuilder(String memberId, String merchantId){
+
+    public MemberPointBuilder(String authToken, String deviceUniqId, String memberId, String merchantId){
+        this.authToken = authToken;
+        this.deviceUniqId = deviceUniqId;
         this.memberId = memberId;
         this.merchantId = merchantId;
     }
 
     public void memberPointGoodie(Context context, SetMemberPointListener listener){
-        memberPointObserv(memberId, merchantId, context)
+        memberPointObserv(authToken, deviceUniqId, memberId, merchantId, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<MemberPointResponse> memberPointObserv(String memberId, String merchantId, Context context){
-        return GoodieApis.getInstance().doMemberPoint(memberId, merchantId, context);
+    public Observable<MemberPointResponse> memberPointObserv(String authToken, String deviceUniqId, String memberId, String merchantId, Context context){
+        return GoodieApis.getInstance().doMemberPoint(authToken, deviceUniqId, memberId, merchantId, context);
     }
 
 

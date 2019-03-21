@@ -31,8 +31,8 @@ public class Goodie{
     }
 
     //login goodie
-    public static LoginBuilder setLogin(String userEmail, String password, String memberId){
-        return GoodieCore.setLoginUser(userEmail, password, memberId);
+    public static LoginBuilder setLogin(String userEmail, String password, String merchantId){
+        return GoodieCore.setLoginUser(userEmail, password, merchantId);
     }
 
     //register goodie
@@ -48,8 +48,8 @@ public class Goodie{
     }
 
     //memberpoint goodie
-    public static MemberPointBuilder setMemberPoint(String memberId, String merchantId){
-        return GoodieCore.setMemberPointBuilder(memberId, merchantId);
+    public static MemberPointBuilder setMemberPoint(String authToken, String deviceUniqId, String memberId, String merchantId){
+        return GoodieCore.setMemberPointBuilder(authToken, deviceUniqId, memberId, merchantId);
     }
 
     //promotion inquiry goodie all type (MIX)

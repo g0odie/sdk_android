@@ -30,6 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
@@ -80,8 +81,8 @@ public enum GoodieApis {
     }
 
 
-    public Observable<LoginResponse> doLogin(String username, String password, String memberId, Context context){
-        return api.login(GoodieModel.setLoginRequest(username, password, memberId, context));
+    public Observable<LoginResponse> doLogin(String username, String password, String merchantId, Context context){
+        return api.login(GoodieModel.setLoginRequest(username, password, merchantId, context));
     }
 
     public Observable<RegisterResponse> doRegister(String username, String merchantId, String phoneNumber,
@@ -95,8 +96,8 @@ public enum GoodieApis {
         return api.verification(GoodieModel.setVerificationRequest(username, code, merchantId, context));
     }
 
-    public Observable<MemberPointResponse> doMemberPoint(String memberId, String merchantId, Context context) {
-        return api.memberPoint(GoodieModel.setMemberPointRequest(memberId, merchantId, context));
+    public Observable<MemberPointResponse> doMemberPoint(String authToken, String deviceId, String memberId, String merchantId, Context context) {
+        return api.memberPoint(authToken, deviceId, GoodieModel.setMemberPointRequest(memberId, merchantId, context));
     }
 
 
@@ -144,7 +145,9 @@ public enum GoodieApis {
         Observable<VerificationResponse> verification(@Body VerificationRequest request);
 
         @POST("member/points")
-        Observable<MemberPointResponse> memberPoint(@Body MemberPointRequest request);
+        Observable<MemberPointResponse> memberPoint(@Header("authToken")  String authToken,
+                                                    @Header("deviceUniqueId")  String deviceUniqId,
+                                                    @Body MemberPointRequest request);
 
         @POST("promotion/inquiry")
         Observable<PromotionInquiryResponse> promotionInquiry(@Body PromotionInquiryRequest request);

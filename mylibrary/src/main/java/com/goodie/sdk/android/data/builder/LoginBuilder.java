@@ -15,23 +15,23 @@ public class LoginBuilder {
 
     private String password;
     private String username;
-    private String memberId;
+    private String merchantId;
 
-    public LoginBuilder(String username, String password, String memberId){
+    public LoginBuilder(String username, String password, String merchantId){
         this.username = username;
         this.password = password;
-        this.memberId = memberId;
+        this.merchantId = merchantId;
     }
 
     public void loginGoodie(Context context, SetLoginListener listener){
-        loginObserv(username,  password,  memberId, context)
+        loginObserv(username,  password,  merchantId, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<LoginResponse> loginObserv(String username, String password, String memberId, Context context){
-        return GoodieApis.getInstance().doLogin(username, password, memberId, context);
+    public Observable<LoginResponse> loginObserv(String username, String password, String merchantId, Context context){
+        return GoodieApis.getInstance().doLogin(username, password, merchantId, context);
     }
 
 }

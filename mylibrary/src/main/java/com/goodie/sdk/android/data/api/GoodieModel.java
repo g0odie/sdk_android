@@ -25,13 +25,14 @@ public class GoodieModel {
     //get deviceid
     public static String getDeviceId(Context context){
         String result = "";
-        result = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        //result = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        result = "tokenttokenan";
         return result;
     }
 
     //get data login request
     public static LoginRequest setLoginRequest(String username, String password, String memberId, Context context){
-        final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        final String idDevice = getDeviceId(context);
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username);
         loginRequest.setPassword(password);
@@ -45,7 +46,7 @@ public class GoodieModel {
                                                      String phoneNumber, String password,
                                                      String firstName, String lastName,
                                                      String birthDate, String referralCode, Context context){
-        final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        final String idDevice = getDeviceId(context);
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setUsername(username);
         registerRequest.setMerchantId(merchantId);

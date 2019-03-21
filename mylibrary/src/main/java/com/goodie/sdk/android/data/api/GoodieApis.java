@@ -30,6 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -131,6 +132,7 @@ public enum GoodieApis {
 
 
     public interface Apis {
+
 
         @POST("authentication/create")
         Observable<LoginResponse> login(@Body LoginRequest request);

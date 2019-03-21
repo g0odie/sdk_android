@@ -17,14 +17,18 @@ import rx.schedulers.Schedulers;
 
 public class PromotionInquiryBuilder {
 
+    private String authToken;
+    private String deviceUniqId;
     private String memberId;
     private String merchantId;
     private String storeId;
     private BasicRulesReq basicRulesReqs;
     private List<CustomRulesReq> customRulesReqs;
 
-    public PromotionInquiryBuilder(String memberId, String merchantId, String storeId,
+    public PromotionInquiryBuilder(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                     BasicRulesReq basicRulesReqs, List<CustomRulesReq> customRulesReqs){
+        this.authToken = authToken;
+        this.deviceUniqId = deviceUniqId;
         this.memberId = memberId;
         this.merchantId = merchantId;
         this.storeId = storeId;
@@ -34,15 +38,15 @@ public class PromotionInquiryBuilder {
 
 
     public void promotionInquiryGoodie(Context context, SetPromotionInquiryListener listener){
-        promoInquiryObserv(memberId, merchantId, storeId, basicRulesReqs, customRulesReqs, context)
+        promoInquiryObserv(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReqs, customRulesReqs, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<PromotionInquiryResponse> promoInquiryObserv(String memberId, String merchantId, String storeId,
+    public Observable<PromotionInquiryResponse> promoInquiryObserv(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                     BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReqs, Context context){
-        return GoodieApis.getInstance().doPromotionInquiry(memberId, merchantId, storeId, basicRulesReq, customRulesReqs, context);
+        return GoodieApis.getInstance().doPromotionInquiry(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReq, customRulesReqs, context);
     }
 
 

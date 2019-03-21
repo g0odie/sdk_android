@@ -77,10 +77,10 @@ public class GoodieCore{
     }
 
     //promotion inquiry
-    public static PromotionInquiryBuilder setPromotionInquiryBuilder(String memberId, String merchantId,
+    public static PromotionInquiryBuilder setPromotionInquiryBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                                      String storeId, BasicRulesReq basicRulesReq,
                                                                      List<CustomRulesReq> customRulesReqs){
-        return new PromotionInquiryBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+        return new PromotionInquiryBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
     //promotion posting
@@ -98,17 +98,17 @@ public class GoodieCore{
     }
 
     //promotion inquiry custom issuing
-    public static PromotionInquiryCustomIssuingBuilder setPromotionInqCustomIssuingBuilder(String memberId, String merchantId,
+    public static PromotionInquiryCustomIssuingBuilder setPromotionInqCustomIssuingBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                                                    String storeId, String ruleName, int issuing,
                                                                                    Double amount, String ref){
-        return new PromotionInquiryCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, ref);
+        return new PromotionInquiryCustomIssuingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, ref);
     }
 
     //promotion inquiry custom by Amount
-    public static PromotionInquiryCustomByAmountBuilder setPromotionInqCustomByAmountBuilder(String memberId, String merchantId,
+    public static PromotionInquiryCustomByAmountBuilder setPromotionInqCustomByAmountBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                                                             String storeId, String ruleName, int issuing,
                                                                                             Double amount, String ref){
-        return new PromotionInquiryCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, ref);
+        return new PromotionInquiryCustomByAmountBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, ref);
     }
 
 

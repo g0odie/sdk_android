@@ -13,6 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class PromotionInquiryCustomByAmountBuilder {
 
+    private String authToken;
+    private String deviceUniqId;
     private String memberId;
     private String merchantId;
     private String storeId;
@@ -22,6 +24,8 @@ public class PromotionInquiryCustomByAmountBuilder {
     private String refNumber;
 
     public PromotionInquiryCustomByAmountBuilder(
+            String authToken,
+            String deviceUniqId,
             String memberId,
             String merchantId,
             String storeId,
@@ -29,6 +33,8 @@ public class PromotionInquiryCustomByAmountBuilder {
             int issuing,
             Double amount,
             String refNumber){
+        this.authToken = authToken;
+        this.deviceUniqId = deviceUniqId;
         this.memberId = memberId;
         this.merchantId = merchantId;
         this.storeId = storeId;
@@ -39,15 +45,15 @@ public class PromotionInquiryCustomByAmountBuilder {
     }
 
     public void promotionInquiryCustomByAmountGoodie(Context context, SetPromotionInquiryBasicListener listener){
-        promoInqCustomByAmountObserv(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context)
+        promoInqCustomByAmountObserv(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<PromoInqBasicResponse> promoInqCustomByAmountObserv(String memberId, String merchantId, String storeId,
+    public Observable<PromoInqBasicResponse> promoInqCustomByAmountObserv(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                          String ruleName, int issuing, Double amount, String refNumber, Context context){
-        return GoodieApis.getInstance().doPromoInquiryCustomByAmount(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context);
+        return GoodieApis.getInstance().doPromoInquiryCustomByAmount(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context);
     }
 
 

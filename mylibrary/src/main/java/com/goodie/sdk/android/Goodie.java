@@ -54,10 +54,10 @@ public class Goodie{
     }
 
     //promotion inquiry goodie all type (MIX)
-    public static PromotionInquiryBuilder setPromotionMixInquiry(String memberId, String merchantId, String storeId,
+    public static PromotionInquiryBuilder setPromotionMixInquiry(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                               BasicRulesReq basicRulesReq,
                                                               List<CustomRulesReq> customRulesReqs){
-        return GoodieCore.setPromotionInquiryBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+        return GoodieCore.setPromotionInquiryBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
     //promotion inquiry basic goodie
@@ -68,16 +68,16 @@ public class Goodie{
 
 
     //promotion inquiry custom Issuing
-    public static PromotionInquiryCustomIssuingBuilder setPromotionInquiryIssuing(String memberId, String merchantId, String storeId,
+    public static PromotionInquiryCustomIssuingBuilder setPromotionInquiryIssuing(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                                 String ruleName, String ref){
-        return GoodieCore.setPromotionInqCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, Constant.ISSUING_TYPE, 0.0, ref);
+        return GoodieCore.setPromotionInqCustomIssuingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, Constant.ISSUING_TYPE, 0.0, ref);
     }
 
 
     //promotion inquiry custom by Amount
-    public static PromotionInquiryCustomByAmountBuilder setPromotionInquiryByAmount(String memberId, String merchantId, String storeId,
+    public static PromotionInquiryCustomByAmountBuilder setPromotionInquiryByAmount(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                                    String ruleName, Double amount, String ref){
-        return GoodieCore.setPromotionInqCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, Constant.AMOUNT_TYPE, amount, ref);
+        return GoodieCore.setPromotionInqCustomByAmountBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, Constant.AMOUNT_TYPE, amount, ref);
     }
 
 

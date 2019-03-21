@@ -101,9 +101,9 @@ public enum GoodieApis {
     }
 
 
-    public Observable<PromotionInquiryResponse> doPromotionInquiry(String memberId, String merchantId, String storeId,
+    public Observable<PromotionInquiryResponse> doPromotionInquiry(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                    BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReq, Context context) {
-        return api.promotionInquiry(GoodieModel.setPromotionInquiryRequest(memberId, merchantId, storeId, basicRulesReq, customRulesReq, context));
+        return api.promotionInquiry(authToken, deviceUniqId, GoodieModel.setPromotionInquiryRequest(memberId, merchantId, storeId, basicRulesReq, customRulesReq, context));
     }
 
 
@@ -119,15 +119,15 @@ public enum GoodieApis {
                                                                  productCode, refNumber, totalTrxAmount, context));
     }
 
-    public Observable<PromoInqBasicResponse> doPromoInquiryCustomIssuing(String memberId, String merchantId, String storeId,
+    public Observable<PromoInqBasicResponse> doPromoInquiryCustomIssuing(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                  String roleName, int issuing, Double amount, String refNumber, Context context) {
-        return api.promoInquiryCustomIssuing(GoodieModel.setPromoInqCustomIssuingRequest(memberId, merchantId, storeId,
+        return api.promoInquiryCustomIssuing(authToken, deviceUniqId, GoodieModel.setPromoInqCustomIssuingRequest(memberId, merchantId, storeId,
                 roleName, issuing, amount, refNumber, context));
     }
 
-    public Observable<PromoInqBasicResponse> doPromoInquiryCustomByAmount(String memberId, String merchantId, String storeId,
+    public Observable<PromoInqBasicResponse> doPromoInquiryCustomByAmount(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                          String roleName, int issuing, Double amount, String refNumber, Context context) {
-        return api.promoInquiryCustomByAmount(GoodieModel.setPromoInqCustomByAmountRequest(memberId, merchantId, storeId,
+        return api.promoInquiryCustomByAmount(authToken, deviceUniqId, GoodieModel.setPromoInqCustomByAmountRequest(memberId, merchantId, storeId,
                 roleName, issuing, amount, refNumber, context));
     }
 
@@ -150,10 +150,9 @@ public enum GoodieApis {
                                                     @Body MemberPointRequest request);
 
         @POST("promotion/inquiry")
-        Observable<PromotionInquiryResponse> promotionInquiry(@Body PromotionInquiryRequest request);
-
-        @POST("promotion/posting")
-        Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
+        Observable<PromotionInquiryResponse> promotionInquiry(@Header("authToken")  String authToken,
+                                                              @Header("deviceUniqueId")  String deviceUniqId,
+                                                              @Body PromotionInquiryRequest request);
 
         @POST("promotion/inquiry")
         Observable<PromoInqBasicResponse> promoInquiryBasic(@Header("authToken")  String authToken,
@@ -161,11 +160,18 @@ public enum GoodieApis {
                                                             @Body PromoInqBasicRequest request);
 
         @POST("promotion/inquiry")
-        Observable<PromoInqBasicResponse> promoInquiryCustomIssuing(@Body PromoInqCustomIssuingRequest request);
+        Observable<PromoInqBasicResponse> promoInquiryCustomIssuing(@Header("authToken")  String authToken,
+                                                                    @Header("deviceUniqueId")  String deviceUniqId,
+                                                                    @Body PromoInqCustomIssuingRequest request);
 
         @POST("promotion/inquiry")
-        Observable<PromoInqBasicResponse> promoInquiryCustomByAmount(@Body PromoInqCustomByAmountRequest request);
+        Observable<PromoInqBasicResponse> promoInquiryCustomByAmount(@Header("authToken")  String authToken,
+                                                                     @Header("deviceUniqueId")  String deviceUniqId,
+                                                                     @Body PromoInqCustomByAmountRequest request);
 
+
+        @POST("promotion/posting")
+        Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
 
     }
 

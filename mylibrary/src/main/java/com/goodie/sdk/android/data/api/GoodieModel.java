@@ -114,7 +114,12 @@ public class GoodieModel {
                                                                        String roleName, int issuing, int amount, String refNumber, Context context){
 
         List<CustomRulesReq> customRulesReq = new ArrayList<>();
-        customRulesReq.add(getCustomRoles(roleName, issuing, amount, refNumber));
+        CustomRulesReq customRulesReq1 = new CustomRulesReq();
+        customRulesReq1.setAmount(amount);
+        customRulesReq1.setIssuing(issuing);
+        customRulesReq1.setRefNumber(refNumber);
+        customRulesReq1.setRuleName(roleName);
+        customRulesReq.add(customRulesReq1);
         PromoInqCustomIssuingRequest promoInqCustomIssuingRequest = new PromoInqCustomIssuingRequest();
         promoInqCustomIssuingRequest.setMemberId(memberId);
         promoInqCustomIssuingRequest.setMerchantId(merchantId);

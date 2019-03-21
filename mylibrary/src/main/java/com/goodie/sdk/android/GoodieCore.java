@@ -56,14 +56,14 @@ public class GoodieCore{
     }
 
     //login user
-    public static LoginBuilder setLoginUser(String userEmail, String password, String merchantId){
-        return new LoginBuilder(userEmail, password, merchantId);
+    public static LoginBuilder setLoginUser(String deviceUniqId, String userEmail, String password, String merchantId){
+        return new LoginBuilder(deviceUniqId, userEmail, password, merchantId);
     }
 
     //register user
     public static RegisterBuilder setRegisterUser(String username, String merchantId, String phoneNumber, String password, String firstName, String lastName,
-                                                  String birthDate, String referralCode){
-        return new RegisterBuilder(username, merchantId, phoneNumber, password, firstName, lastName, birthDate, referralCode);
+                                                  String deviceUniqId, String birthDate, String referralCode){
+        return new RegisterBuilder(username, merchantId, phoneNumber, password, firstName, lastName, deviceUniqId, birthDate, referralCode);
     }
 
     //verification
@@ -72,7 +72,7 @@ public class GoodieCore{
     }
 
     //member point
-    public static MemberPointBuilder setMemberPointBuilder(String authToken, String deviceUniqId, String memberId, String merchantId){
+    public static MemberPointBuilder setMemberPointBuilder(String authToken, String deviceUniqId,  String memberId, String merchantId){
         return new MemberPointBuilder(authToken, deviceUniqId, memberId, merchantId);
     }
 
@@ -91,10 +91,10 @@ public class GoodieCore{
     }
 
     //promotion inquiry basic
-    public static PromotionInquiryBasicBuilder setPromotionInqBasicBuilder(String memberId, String merchantId,
+    public static PromotionInquiryBasicBuilder setPromotionInqBasicBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                     String storeId, String productCode, String refNumber,
                                                     Double totalTrxAmount){
-        return new PromotionInquiryBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
+        return new PromotionInquiryBasicBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
     }
 
     //promotion inquiry custom issuing

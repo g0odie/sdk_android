@@ -81,23 +81,23 @@ public enum GoodieApis {
     }
 
 
-    public Observable<LoginResponse> doLogin(String username, String password, String merchantId, Context context){
-        return api.login(GoodieModel.setLoginRequest(username, password, merchantId, context));
+    public Observable<LoginResponse> doLogin(String deviceUniqId, String username, String password, String merchantId, Context context){
+        return api.login(GoodieModel.setLoginRequest(deviceUniqId, username, password, merchantId, context));
     }
 
     public Observable<RegisterResponse> doRegister(String username, String merchantId, String phoneNumber,
-                                                   String password, String firstName, String lastName,
+                                                   String password, String firstName, String lastName, String deviceUniqId,
                                                    String birthDate, String referralCode, Context context){
         return api.register(GoodieModel.setRegisterRequest(username, merchantId, phoneNumber, password,
-                                                    firstName, lastName, birthDate, referralCode, context));
+                                                    firstName, lastName, deviceUniqId, birthDate, referralCode, context));
     }
 
     public Observable<VerificationResponse> doVerifation(String username, String code, String merchantId, Context context){
         return api.verification(GoodieModel.setVerificationRequest(username, code, merchantId, context));
     }
 
-    public Observable<MemberPointResponse> doMemberPoint(String authToken, String deviceId, String memberId, String merchantId, Context context) {
-        return api.memberPoint(authToken, deviceId, GoodieModel.setMemberPointRequest(memberId, merchantId, context));
+    public Observable<MemberPointResponse> doMemberPoint(String authToken, String deviceUniqId, String memberId, String merchantId, Context context) {
+        return api.memberPoint(authToken, deviceUniqId, GoodieModel.setMemberPointRequest(memberId, merchantId, context));
     }
 
 
@@ -113,9 +113,9 @@ public enum GoodieApis {
     }
 
 
-    public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String memberId, String merchantId, String storeId,
+    public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                  String productCode, String refNumber, Double totalTrxAmount, Context context) {
-        return api.promoInquiryBasic(GoodieModel.setPromoInqBasicRequest(memberId, merchantId, storeId,
+        return api.promoInquiryBasic(authToken, deviceUniqId, GoodieModel.setPromoInqBasicRequest(memberId, merchantId, storeId,
                                                                  productCode, refNumber, totalTrxAmount, context));
     }
 
@@ -156,7 +156,9 @@ public enum GoodieApis {
         Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
 
         @POST("promotion/inquiry")
-        Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);
+        Observable<PromoInqBasicResponse> promoInquiryBasic(@Header("authToken")  String authToken,
+                                                            @Header("deviceUniqueId")  String deviceUniqId,
+                                                            @Body PromoInqBasicRequest request);
 
         @POST("promotion/inquiry")
         Observable<PromoInqBasicResponse> promoInquiryCustomIssuing(@Body PromoInqCustomIssuingRequest request);

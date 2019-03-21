@@ -31,15 +31,16 @@ public class Goodie{
     }
 
     //login goodie
-    public static LoginBuilder setLogin(String userEmail, String password, String merchantId){
-        return GoodieCore.setLoginUser(userEmail, password, merchantId);
+    public static LoginBuilder setLogin(String deviceUniqId, String userEmail, String password, String merchantId){
+        return GoodieCore.setLoginUser(deviceUniqId, userEmail, password, merchantId);
     }
 
     //register goodie
     public static RegisterBuilder setRegister(String username, String merchantId, String phoneNumber,
                                               String password, String firstName, String lastName,
+                                              String deviceUniqId,
                                               String birthDate, String referralCode){
-        return GoodieCore.setRegisterUser(username, merchantId, phoneNumber, password, firstName, lastName, birthDate, referralCode);
+        return GoodieCore.setRegisterUser(username, merchantId, phoneNumber, password, firstName, lastName, deviceUniqId, birthDate, referralCode);
     }
 
     //verification goodie
@@ -60,9 +61,9 @@ public class Goodie{
     }
 
     //promotion inquiry basic goodie
-    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
+    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                         String productCode, String refNumber, Double totalTrxAmount){
-        return GoodieCore.setPromotionInqBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
+        return GoodieCore.setPromotionInqBasicBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
     }
 
 

@@ -13,25 +13,27 @@ import rx.schedulers.Schedulers;
 
 public class LoginBuilder {
 
+    private String deviceUniqId;
     private String password;
     private String username;
     private String merchantId;
 
-    public LoginBuilder(String username, String password, String merchantId){
+    public LoginBuilder(String deviceUniqId, String username, String password, String merchantId){
+        this.deviceUniqId = deviceUniqId;
         this.username = username;
         this.password = password;
         this.merchantId = merchantId;
     }
 
     public void loginGoodie(Context context, SetLoginListener listener){
-        loginObserv(username,  password,  merchantId, context)
+        loginObserv(deviceUniqId, username,  password,  merchantId, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<LoginResponse> loginObserv(String username, String password, String merchantId, Context context){
-        return GoodieApis.getInstance().doLogin(username, password, merchantId, context);
+    public Observable<LoginResponse> loginObserv(String deviceUniqId, String username, String password, String merchantId, Context context){
+        return GoodieApis.getInstance().doLogin(deviceUniqId, username, password, merchantId, context);
     }
 
 }

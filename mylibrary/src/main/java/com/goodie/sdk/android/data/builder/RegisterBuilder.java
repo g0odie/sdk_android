@@ -13,17 +13,20 @@ import rx.schedulers.Schedulers;
 
 public class RegisterBuilder {
 
+
     private String username;
     private String merchantId;
     private String phoneNumber;
     private String password;
     private String firstName;
     private String lastName;
+    private String deviceUniqId;
     private String birthDate;
     private String referralCode;
 
     public RegisterBuilder(String username, String merchantId, String phoneNumber, String password,
-                           String firstName, String lastName, String birthDate, String referralCode){
+                           String firstName, String lastName, String deviceUniqId, String birthDate, String referralCode){
+        this.deviceUniqId = deviceUniqId;
         this.username = username;
         this.merchantId = merchantId;
         this.phoneNumber = phoneNumber;
@@ -36,15 +39,15 @@ public class RegisterBuilder {
 
     public void regiterGoodie(Context context, SetRegisterListener listener){
         registerObserv(username, merchantId, phoneNumber, password, firstName,
-                       lastName, birthDate, referralCode, context)
+                       lastName, deviceUniqId, birthDate, referralCode, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
     public Observable<RegisterResponse> registerObserv(String username, String merchantId, String phoneNumber,
-                                                       String password, String firstName, String lastName,
+                                                       String password, String firstName, String lastName, String deviceUniqId,
                                                        String birthDate, String referralCode, Context context){
-        return GoodieApis.getInstance().doRegister(username, merchantId, phoneNumber, password, firstName, lastName, birthDate, referralCode, context);
+        return GoodieApis.getInstance().doRegister(username, merchantId, phoneNumber, password, firstName, lastName, deviceUniqId, birthDate, referralCode, context);
     }
 }

@@ -31,20 +31,20 @@ public class GoodieModel {
     }
 
     //get data login request
-    public static LoginRequest setLoginRequest(String username, String password, String merchantId, Context context){
+    public static LoginRequest setLoginRequest(String deviceUniqId, String username, String password, String merchantId, Context context){
         final String idDevice = getDeviceId(context);
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username);
         loginRequest.setPassword(password);
         loginRequest.setMerchantId(merchantId);
-        loginRequest.setDeviceUniqueId(idDevice);
+        loginRequest.setDeviceUniqueId(deviceUniqId);
         return  loginRequest;
     }
 
     //get data register request
     public static RegisterRequest setRegisterRequest(String username, String merchantId,
                                                      String phoneNumber, String password,
-                                                     String firstName, String lastName,
+                                                     String firstName, String lastName, String deviceUniqId,
                                                      String birthDate, String referralCode, Context context){
         final String idDevice = getDeviceId(context);
         RegisterRequest registerRequest = new RegisterRequest();
@@ -56,7 +56,7 @@ public class GoodieModel {
         registerRequest.setLastName(lastName);
         registerRequest.setBirthDate(birthDate);
         registerRequest.setReferralCode(referralCode);
-        registerRequest.setDeviceUniqueId(idDevice);
+        registerRequest.setDeviceUniqueId(deviceUniqId);
         return registerRequest;
     }
 

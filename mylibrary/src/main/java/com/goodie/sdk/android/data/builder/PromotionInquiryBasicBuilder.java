@@ -13,6 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class PromotionInquiryBasicBuilder {
 
+    private String authToken;
+    private String deviceUniqId;
     private String memberId;
     private String merchantId;
     private String storeId;
@@ -20,8 +22,10 @@ public class PromotionInquiryBasicBuilder {
     private String refNumber;
     private Double totalTrxAmount;
 
-    public PromotionInquiryBasicBuilder(String memberId, String merchantId, String storeId,
+    public PromotionInquiryBasicBuilder(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                         String productCode, String refNumber, Double totalTrxAmount){
+        this.authToken = authToken;
+        this.deviceUniqId = deviceUniqId;
         this.memberId = memberId;
         this.merchantId = merchantId;
         this.storeId = storeId;
@@ -31,15 +35,15 @@ public class PromotionInquiryBasicBuilder {
     }
 
     public void promotionInquiryBasicGoodie(Context context, SetPromotionInquiryBasicListener listener){
-        promoInqBasicObserv(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount, context)
+        promoInqBasicObserv(authToken, deviceUniqId, memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<PromoInqBasicResponse> promoInqBasicObserv(String memberId, String merchantId, String storeId,
+    public Observable<PromoInqBasicResponse> promoInqBasicObserv(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                  String productCode, String refNumber, Double totalTrxAmount, Context context){
-        return GoodieApis.getInstance().doPromoInquiryBasic(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount, context);
+        return GoodieApis.getInstance().doPromoInquiryBasic(authToken, deviceUniqId, memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount, context);
     }
 
 

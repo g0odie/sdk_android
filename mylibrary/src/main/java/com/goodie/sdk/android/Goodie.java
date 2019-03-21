@@ -82,10 +82,10 @@ public class Goodie{
 
 
     //promotion posting goodie all type
-    public static PromotionPostingBuilder setPromotionPosting(String memberId, String merchantId, String storeId,
+    public static PromotionPostingBuilder setPromotionPosting(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                               BasicRulesReq basicRulesReq,
                                                               List<CustomRulesReq> customRulesReqs){
-        return GoodieCore.setPromotionPostingBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+        return GoodieCore.setPromotionPostingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
 

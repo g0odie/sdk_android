@@ -18,14 +18,18 @@ import rx.schedulers.Schedulers;
 
 public class PromotionPostingBuilder {
 
+
+    private String authToken;
+    private String deviceUniqId;
     private String memberId;
     private String merchantId;
     private String storeId;
     private BasicRulesReq basicRulesReqs;
     private List<CustomRulesReq> customRulesReqs;
 
-    public PromotionPostingBuilder(String memberId, String merchantId, String storeId,
+    public PromotionPostingBuilder(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                    BasicRulesReq basicRulesReqs, List<CustomRulesReq> customRulesReqs){
+        this.authToken = deviceUniqId;
         this.memberId = memberId;
         this.merchantId = merchantId;
         this.storeId = storeId;
@@ -35,16 +39,16 @@ public class PromotionPostingBuilder {
 
 
     public void promotionPostingGoodie(Context context, SetPromotionPostingListener listener){
-        promoPostingObserv(memberId, merchantId, storeId, basicRulesReqs, customRulesReqs, context)
+        promoPostingObserv(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReqs, customRulesReqs, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
 
-    public Observable<PromotionPostingResponse> promoPostingObserv(String memberId, String merchantId, String storeId,
+    public Observable<PromotionPostingResponse> promoPostingObserv(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                    BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReqs, Context context){
-        return GoodieApis.getInstance().doPromotionPosting(memberId, merchantId, storeId, basicRulesReq, customRulesReqs, context);
+        return GoodieApis.getInstance().doPromotionPosting(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReq, customRulesReqs, context);
     }
 
 

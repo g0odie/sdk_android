@@ -107,9 +107,9 @@ public enum GoodieApis {
     }
 
 
-    public Observable<PromotionPostingResponse> doPromotionPosting(String memberId, String merchantId, String storeId,
+    public Observable<PromotionPostingResponse> doPromotionPosting(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                    BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReq, Context context) {
-        return api.promotionPosting(GoodieModel.setPromotionPostingRequest(memberId, merchantId, storeId, basicRulesReq, customRulesReq, context));
+        return api.promotionPosting(authToken, deviceUniqId, GoodieModel.setPromotionPostingRequest(memberId, merchantId, storeId, basicRulesReq, customRulesReq, context));
     }
 
 
@@ -171,7 +171,9 @@ public enum GoodieApis {
 
 
         @POST("promotion/posting")
-        Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
+        Observable<PromotionPostingResponse> promotionPosting(@Header("authToken")  String authToken,
+                                                              @Header("deviceUniqueId")  String deviceUniqId,
+                                                              @Body PromotionPostingRequest request);
 
     }
 

@@ -84,10 +84,10 @@ public class GoodieCore{
     }
 
     //promotion posting
-    public static PromotionPostingBuilder setPromotionPostingBuilder(String memberId, String merchantId,
+    public static PromotionPostingBuilder setPromotionPostingBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                                      String storeId, BasicRulesReq basicRulesReq,
                                                                      List<CustomRulesReq> customRulesReqs){
-        return new PromotionPostingBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+        return new PromotionPostingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
     //promotion inquiry basic

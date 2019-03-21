@@ -100,14 +100,14 @@ public class GoodieCore{
     //promotion inquiry custom issuing
     public static PromotionInquiryCustomIssuingBuilder setPromotionInqCustomIssuingBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                                                    String storeId, String ruleName, int issuing,
-                                                                                   Double amount, String ref){
+                                                                                   int amount, String ref){
         return new PromotionInquiryCustomIssuingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, ref);
     }
 
     //promotion inquiry custom by Amount
     public static PromotionInquiryCustomByAmountBuilder setPromotionInqCustomByAmountBuilder(String authToken, String deviceUniqId, String memberId, String merchantId,
                                                                                             String storeId, String ruleName, int issuing,
-                                                                                            Double amount, String ref){
+                                                                                            int amount, String ref){
         return new PromotionInquiryCustomByAmountBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, ref);
     }
 

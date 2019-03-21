@@ -20,7 +20,7 @@ public class PromotionInquiryCustomByAmountBuilder {
     private String storeId;
     private String ruleName;
     private int issuing;
-    private Double amount;
+    private int amount;
     private String refNumber;
 
     public PromotionInquiryCustomByAmountBuilder(
@@ -31,7 +31,7 @@ public class PromotionInquiryCustomByAmountBuilder {
             String storeId,
             String ruleName,
             int issuing,
-            Double amount,
+            int amount,
             String refNumber){
         this.authToken = authToken;
         this.deviceUniqId = deviceUniqId;
@@ -52,7 +52,7 @@ public class PromotionInquiryCustomByAmountBuilder {
     }
 
     public Observable<PromoInqBasicResponse> promoInqCustomByAmountObserv(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
-                                                                         String ruleName, int issuing, Double amount, String refNumber, Context context){
+                                                                         String ruleName, int issuing, int amount, String refNumber, Context context){
         return GoodieApis.getInstance().doPromoInquiryCustomByAmount(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context);
     }
 

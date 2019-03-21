@@ -70,13 +70,13 @@ public class Goodie{
     //promotion inquiry custom Issuing
     public static PromotionInquiryCustomIssuingBuilder setPromotionInquiryIssuing(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
                                                                                 String ruleName, String ref){
-        return GoodieCore.setPromotionInqCustomIssuingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, Constant.ISSUING_TYPE, 0.0, ref);
+        return GoodieCore.setPromotionInqCustomIssuingBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, Constant.ISSUING_TYPE, 0, ref);
     }
 
 
     //promotion inquiry custom by Amount
     public static PromotionInquiryCustomByAmountBuilder setPromotionInquiryByAmount(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
-                                                                                   String ruleName, Double amount, String ref){
+                                                                                   String ruleName, int amount, String ref){
         return GoodieCore.setPromotionInqCustomByAmountBuilder(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, Constant.AMOUNT_TYPE, amount, ref);
     }
 

@@ -20,7 +20,7 @@ public class PromotionInquiryCustomIssuingBuilder {
     private String storeId;
     private String ruleName;
     private int issuing;
-    private Double amount;
+    private int amount;
     private String refNumber;
 
     public PromotionInquiryCustomIssuingBuilder(
@@ -31,7 +31,7 @@ public class PromotionInquiryCustomIssuingBuilder {
                         String storeId,
                         String ruleName,
                         int issuing,
-                        Double amount,
+                        int amount,
                         String refNumber){
         this.authToken = authToken;
         this.deviceUniqId = deviceUniqId;
@@ -54,7 +54,7 @@ public class PromotionInquiryCustomIssuingBuilder {
 
 
     public Observable<PromoInqBasicResponse> promoInqCustomIssuingObserv(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
-                                                                         String ruleName, int issuing, Double amount, String refNumber, Context context){
+                                                                         String ruleName, int issuing, int amount, String refNumber, Context context){
         return GoodieApis.getInstance().doPromoInquiryCustomIssuing(authToken, deviceUniqId, memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context);
     }
 

@@ -120,13 +120,13 @@ public enum GoodieApis {
     }
 
     public Observable<PromoInqBasicResponse> doPromoInquiryCustomIssuing(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
-                                                                 String roleName, int issuing, Double amount, String refNumber, Context context) {
+                                                                 String roleName, int issuing, int amount, String refNumber, Context context) {
         return api.promoInquiryCustomIssuing(authToken, deviceUniqId, GoodieModel.setPromoInqCustomIssuingRequest(memberId, merchantId, storeId,
                 roleName, issuing, amount, refNumber, context));
     }
 
     public Observable<PromoInqBasicResponse> doPromoInquiryCustomByAmount(String authToken, String deviceUniqId, String memberId, String merchantId, String storeId,
-                                                                         String roleName, int issuing, Double amount, String refNumber, Context context) {
+                                                                         String roleName, int issuing, int amount, String refNumber, Context context) {
         return api.promoInquiryCustomByAmount(authToken, deviceUniqId, GoodieModel.setPromoInqCustomByAmountRequest(memberId, merchantId, storeId,
                 roleName, issuing, amount, refNumber, context));
     }

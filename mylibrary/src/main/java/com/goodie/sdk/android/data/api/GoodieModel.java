@@ -87,7 +87,7 @@ public class GoodieModel {
     }
 
     //get custom Roles
-    public static CustomRulesReq getCustomRoles(String ruleName, int issuing, Double amount, String refNumber){
+    public static CustomRulesReq getCustomRoles(String ruleName, int issuing, int amount, String refNumber){
         CustomRulesReq customRulesReq = new CustomRulesReq();
         customRulesReq.setRuleName(ruleName);
         customRulesReq.setIssuing(issuing);
@@ -110,7 +110,7 @@ public class GoodieModel {
 
     //promotion inquiry custom issuing
     public static PromoInqCustomIssuingRequest setPromoInqCustomIssuingRequest(String memberId, String merchantId, String storeId,
-                                                                       String roleName, int issuing, Double amount, String refNumber, Context context){
+                                                                       String roleName, int issuing, int amount, String refNumber, Context context){
         PromoInqCustomIssuingRequest promoInqCustomIssuingRequest = new PromoInqCustomIssuingRequest();
         promoInqCustomIssuingRequest.setMemberId(memberId);
         promoInqCustomIssuingRequest.setMerchantId(merchantId);
@@ -121,7 +121,7 @@ public class GoodieModel {
 
     //promotion inquiry custom issuing
     public static PromoInqCustomByAmountRequest setPromoInqCustomByAmountRequest(String memberId, String merchantId, String storeId,
-                                                                                String roleName, int issuing, Double amount, String refNumber, Context context){
+                                                                                String roleName, int issuing, int amount, String refNumber, Context context){
         PromoInqCustomByAmountRequest promoInqCustomByAmountRequest = new PromoInqCustomByAmountRequest();
         promoInqCustomByAmountRequest.setMemberId(memberId);
         promoInqCustomByAmountRequest.setMerchantId(merchantId);

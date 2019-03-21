@@ -15,7 +15,7 @@ public class CustomRulesReq {
     private Integer issuing;
 
     @SerializedName("amount")
-    private Double amount;
+    private Integer amount;
 
     @SerializedName("refNumber")
     private String refNumber;
@@ -36,13 +36,6 @@ public class CustomRulesReq {
         this.issuing = issuing;
     }
 
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
 
     public String getRefNumber() {
         return refNumber;
@@ -50,5 +43,13 @@ public class CustomRulesReq {
 
     public void setRefNumber(String refNumber) {
         this.refNumber = refNumber;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }
